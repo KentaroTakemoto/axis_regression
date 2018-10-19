@@ -12,8 +12,6 @@ class VGG_double(chainer.Chain):
         super(VGG_double, self).__init__(
             model = L.VGG16Layers(),
             fc = L.Linear(8192,n_out))
-        )
-        self.train = False
 
     def __call__(self, x, t=None, train=True, finetune=False):
         x1 = Variable(self.xp.asarray(x[:,:3,:,:],dtype=np.float32),volatile=not finetune)
@@ -24,7 +22,7 @@ class VGG_double(chainer.Chain):
         if finetune==False:
             h = Variable(h.data,volatile=not train)
         h = F.sigmoid(self.fc(h))
-        if self.train:
+        if train:
             return F.mean_squared_error(h, t)
         else:
             return h
