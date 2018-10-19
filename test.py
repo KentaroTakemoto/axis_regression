@@ -55,6 +55,12 @@ for i in range(100):
     preds.append(pred)
     labels.append(y)
 
-print(preds)
+print(preds[0])
 print('-'*40)
-print(labels)
+print(labels[0])
+preds = np.array(preds)
+labels = np.array(labels)
+
+print('l2 error for direction : {}'.format(np.mean(np.linalg.norm(preds[:,:3]-labels[:,:3],axis=1))
+print('l2 error for location : {}'.format(np.mean(np.linalg.norm(preds[:,3:]-labels[:,3:],axis=1))
+print('whole l2 error : {}'.format(np.mean(np.linalg.norm(preds-labels,axis=1))
