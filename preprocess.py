@@ -16,7 +16,7 @@ def select_angles(model_number, test_angles):
         ang1,ang2 = np.random.choice(angles,2,replace=False)
     return str(ang1), str(ang2)
 
-def load_data(view_param, model_number, mode="data", test_angles=None, size=None,n_out=7, xp=np):
+def load_data(view_param, model_number, mode="data", angles=None, size=None,n_out=7, xp=np):
     def cropping(img,size):
         w,h = img.size
         if w < h:
@@ -53,9 +53,8 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
         return y
 
     elif mode=="data":
-        ang1, ang2 = select_angles(model_number, test_angles)
-        image_path1 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], ang1, filename)
-        image_path2 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], ang2, filename)
+        image_path1 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], angles[0], filename)
+        image_path2 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], angles[1], filename)
         # print('image_path1 : {}'.format(image_path1))
 
 

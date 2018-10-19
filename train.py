@@ -11,7 +11,7 @@ import os
 import argparse
 
 from model import VGG_double
-from preprocess import load_data
+from preprocess import load_data, select_angles
 
 parser = argparse.ArgumentParser(description='Chainer Axis Regression Network')
 parser.add_argument('--gpu', '-g', default=-1, type=int,
@@ -76,7 +76,8 @@ for epoch in range(n_epoch):
         for j in range(batchsize):
             view_param = view_params[np.random.randint(train_view_params)]
             model_number = np.random.randint(2)
-            x[j] = load_data(view_param, model_number, mode="data", test_angles=test_angles, size=image_size, xp=xp)
+            ang1, ang2 = select_angles(model_number, test_angles)
+            x[j] = load_data(view_param, model_number, mode="data", angles=[ang1,ang2], size=image_size, xp=xp)
             y[j] = load_data(view_param, model_number, mode="label",n_out=n_out, xp=xp)
         x = Variable(x)
         y = Variable(y)
