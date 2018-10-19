@@ -41,7 +41,7 @@ view_params_file = args.view_params_file
 with open(view_params_file,"r") as f:
     ls = f.readlines()
 view_params = [l.rstrip('\n') for l in ls]
-n_iter = len(view_params) * 50 // batchsize
+n_iter = len(view_params) * 2 // batchsize
 gpu_flag = True if args.gpu >= 0 else False
 
 model = VGG_double(n_out)
