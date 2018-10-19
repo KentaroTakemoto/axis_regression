@@ -76,7 +76,7 @@ for epoch in range(n_epoch):
         for j in range(batchsize):
             view_param = view_params[np.random.randint(train_view_params)]
             model_number = np.random.randint(2)
-            x[j] = load_data(view_param, model_number, mode="data", test_angles=test_angles, image_size=image_size, xp=xp)
+            x[j] = load_data(view_param, model_number, mode="data", test_angles=test_angles, size=image_size, xp=xp)
             y[j] = load_data(view_param, model_number, mode="label",n_out=n_out, xp=xp)
         x = Variable(x)
         y = Variable(y)
