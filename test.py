@@ -48,7 +48,7 @@ for i in range(100):
     if model_number==1:
         test_angles = [str(int(test_angles[0])*-1), str(int(test_angles[1])*-1)]
     x = load_data(view_param, model_number, mode="data", angles=test_angles, size=args.image_size, xp=xp)
-    y = load_data(view_param, model_number, mode="label",n_out=args.output, xp=xp)
+    y = load_data(view_param, model_number, mode="label",n_out=args.output, xp=np)
     x = xp.expand_dims(x, axis=0)
     x = Variable(x)
     pred = model(x, train=False).data[0]
@@ -58,8 +58,10 @@ for i in range(100):
 print(preds[0])
 print('-'*40)
 print(labels[0])
-preds = np.array(preds)
+preds = np.ndarray(preds)
+print(preds.type)
 labels = np.array(labels)
+print(labels.type)
 
 print('l2 error for direction : {}'.format(np.mean(np.linalg.norm(preds[:,:3]-labels[:,:3],axis=1))))
 print('l2 error for location : {}'.format(np.mean(np.linalg.norm(preds[:,3:]-labels[:,3:],axis=1))))
