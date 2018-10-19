@@ -1,9 +1,7 @@
 from chainer import serializers
 import numpy as np
-from PIL import Image
 import os
 import argparse
-import cv2
 
 from model import VGG_double
 from preprocess import load_data, select_angles
