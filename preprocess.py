@@ -31,10 +31,10 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
 
 
     param = view_param.split(' ')
-    azimuth_deg = param[0]
-    elevation_deg = param[1]
-    theta_deg = param[2]
-    rho = param[3]
+    azimuth_deg = float(param[0])
+    elevation_deg = float(param[1])
+    theta_deg = float(param[2])
+    rho = float(param[3])
     filename = "a%03d_e%03d_t%03d_d%03d.txt" % (round(azimuth_deg), round(elevation_deg), round(theta_deg), round(rho*100))
     print('filename : {}'.format(filename))
 
