@@ -14,8 +14,8 @@ class VGG_double(chainer.Chain):
             fc = L.Linear(8192,n_out))
 
     def __call__(self, x, t=None, train=True, finetune=False):
-        x1 = Variable(self.xp.asarray(x[:,:3,:,:],dtype=np.float32),volatile=not finetune)
-        x2 = Variable(self.xp.asarray(x[:,3:,:,:],dtype=np.float32),volatile=not finetune)
+        x1 = Variable(self.xp.asarray(x.data[:,:3,:,:],dtype=np.float32),volatile=not finetune)
+        x2 = Variable(self.xp.asarray(x.data[:,3:,:,:],dtype=np.float32),volatile=not finetune)
         h1 = self.model(x1,layers=['fc7'], test=not finetune)['fc7']
         h2 = self.model(x2,layers=['fc7'], test=not finetune)['fc7']
         h = F.concat([h1, h2], axis=1)

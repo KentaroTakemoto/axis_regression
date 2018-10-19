@@ -37,7 +37,7 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
     theta_deg = (-1*theta_deg)%360
     rho = float(param[3])
     filename = "a%03d_e%03d_t%03d_d%03d" % (round(azimuth_deg), round(elevation_deg), int(theta_deg), round(rho*100))
-    print('filename : {}'.format(filename))
+    # print('filename : {}'.format(filename))
 
     if mode=="label":
         txt_path = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/annotation/{}/0_{}.txt".format(model_names[model_number], filename)
@@ -49,14 +49,14 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
         for i in range(3):
             y[i] = y[i] * 0.5 + 0.5
         ############################################################
-        print("y : {}".format(y))
+        # print("y : {}".format(y))
         return y
 
     elif mode=="data":
         ang1, ang2 = select_angles(model_number, test_angles)
         image_path1 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], ang1, filename)
         image_path2 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], ang2, filename)
-        print('image_path1 : {}'.format(image_path1))
+        # print('image_path1 : {}'.format(image_path1))
 
 
         img = Image.open(image_path1).convert('RGB')
@@ -65,7 +65,7 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
             img = cropping(img,size)
         x1 = xp.asarray(img, dtype=xp.float32).transpose(2, 0, 1)
         x1 -= 120
-        print(x1.shape)
+        # print(x1.shape)
 
         img = Image.open(image_path2).convert('RGB')
         w,h = img.size
@@ -75,7 +75,7 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
         x2 -= 120
 
         x = xp.concatenate([x1,x2], axis=0)
-        print(x.shape)
+        # print(x.shape)
         return x
 
     else:
