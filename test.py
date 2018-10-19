@@ -49,7 +49,7 @@ for i in range(100):
         test_angles = [str(int(test_angles[0])*-1), str(int(test_angles[1])*-1)]
     x = load_data(view_param, model_number, mode="data", angles=test_angles, size=args.image_size, xp=xp)
     y = load_data(view_param, model_number, mode="label",n_out=args.output, xp=xp)
-    x = np.expand_dims(x, axis=0)
+    x = xp.expand_dims(x, axis=0)
     pred = model(x).data[0]
     preds.append(pred)
     labels.append(y)
