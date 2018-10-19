@@ -26,6 +26,8 @@ args = parser.parse_args()
 
 train_view_params = args.train_view_params
 test_angles = args.test_angles.split(',')
+if model_number==1:
+    test_angles = [str(int(test_angles[0])*-1), str(int(test_angles[1])*-1)]
 view_params_file = args.view_params_file
 
 with open(view_params_file,"r") as f:
