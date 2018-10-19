@@ -17,8 +17,10 @@ class VGG_double(chainer.Chain):
         with chainer.using_config('enable_backprop', finetune):
             x1 = Variable(self.xp.asarray(x.data[:,:3,:,:],dtype=np.float32))
             x2 = Variable(self.xp.asarray(x.data[:,3:,:,:],dtype=np.float32))
-        h1 = self.model(x1,layers=['fc7'], test=not finetune)['fc7']
-        h2 = self.model(x2,layers=['fc7'], test=not finetune)['fc7']
+
+        with chainer.using_config('train', finetune):
+            h1 = self.model(x1,layers=['fc7'])['fc7']
+            h2 = self.model(x2,layers=['fc7'])['fc7']
         h = F.concat([h1, h2], axis=1)
         if finetune==False:
             with chainer.using_config('enable_backprop', train):
