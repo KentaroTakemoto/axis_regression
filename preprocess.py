@@ -35,11 +35,11 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
     elevation_deg = float(param[1])
     theta_deg = float(param[2])
     rho = float(param[3])
-    filename = "a%03d_e%03d_t%03d_d%03d.txt" % (round(azimuth_deg), round(elevation_deg), round(theta_deg), round(rho*100))
+    filename = "a%03d_e%03d_t%03d_d%03d" % (round(azimuth_deg), round(elevation_deg), round(theta_deg), round(rho*100))
     print('filename : {}'.format(filename))
 
     if mode=="label":
-        txt_path = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/annotation/{}/0_{}".format(model_names[model_number], filename)
+        txt_path = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/annotation/{}/0_{}.txt".format(model_names[model_number], filename)
         with open(txt_path,'r') as f:
             y=xp.array(f.read().split(' '))
             if n_out==7:
@@ -53,8 +53,8 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
 
     elif mode=="data":
         ang1, ang2 = select_angles(model_number, test_angles)
-        image_path1 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}".format(model_names[model_number], ang1, filename)
-        image_path2 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}".format(model_names[model_number], ang2, filename)
+        image_path1 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], ang1, filename)
+        image_path2 = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/data/{}/{}_{}.png".format(model_names[model_number], ang2, filename)
         print('image_path1 : {}'.format(image_path1))
 
 
