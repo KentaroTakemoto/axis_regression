@@ -50,7 +50,8 @@ for i in range(100):
     x = load_data(view_param, model_number, mode="data", angles=test_angles, size=args.image_size, xp=xp)
     y = load_data(view_param, model_number, mode="label",n_out=args.output, xp=xp)
     x = xp.expand_dims(x, axis=0)
-    pred = model(x).data[0]
+    x = Variable(x)
+    pred = model(x, train=False).data[0]
     preds.append(pred)
     labels.append(y)
 
