@@ -18,7 +18,7 @@ parser.add_argument('--gpu', '-g', default=-1, type=int,
                     help='GPU ID (negative value indicates CPU)')
 parser.add_argument('--test_angles', '-te', default='60,165', type=str)
 parser.add_argument('--train_view_params', '-tr', default=90, type=int)
-parser.add_argument('--view_params_file', '-vi', default='~/other_githubs/RenderForCNN/test_results/view_params.txt', type=str)
+parser.add_argument('--view_params_file', '-vi', default='/home/mil/takemoto/other_githubs/RenderForCNN/test_results/view_params.txt', type=str)
 parser.add_argument('--batchsize', '-b', type=int, default=20,
                     help='batch size (default value is 20)')
 parser.add_argument('--initmodel', '-i', default=None, type=str,
