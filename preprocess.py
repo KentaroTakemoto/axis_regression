@@ -42,7 +42,7 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
     if mode=="label":
         txt_path = "/home/mil/takemoto/other_githubs/RenderForCNN/test_results/results/02933112_test_results/annotation/{}/0_{}.txt".format(model_names[model_number], filename)
         with open(txt_path,'r') as f:
-            y=xp.array(f.read().split(' '))
+            y=xp.array([float(v) for v in f.read().split(' ') ])
             if n_out==7:
                 y = y[xp.array([0,1,2,3,4,6,7])]
         ############################################################
