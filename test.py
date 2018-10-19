@@ -29,6 +29,11 @@ view_params = [l.rstrip('\n') for l in ls]
 model = VGG_double(n_out=args.output)
 serializers.load_npz(args.weight, model)
 
+if args.gpu >= 0:
+    chainer.cuda.get_device(args.gpu).use()
+    model.to_gpu()
+xp = np if args.gpu < 0 else cuda.cupy
+
 preds = []
 labels = []
 for i in range(100):
