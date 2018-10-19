@@ -65,7 +65,7 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
             img = cropping(img,size)
         x1 = xp.asarray(img, dtype=xp.float32).transpose(2, 0, 1)
         x1 -= 120
-        print("x1.shape : ".format(x1.shape))
+        print(x1.shape)
 
         img = Image.open(image_path2)
         w,h = img.size
@@ -75,7 +75,7 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
         x2 -= 120
 
         x = xp.concatenate([x1,x2], axis=1)
-        print("x.shape : ".format(x.shape))
+        print(x.shape)
         return x
 
     else:
