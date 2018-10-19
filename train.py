@@ -25,7 +25,7 @@ parser.add_argument('--initmodel', '-i', default=None, type=str,
                     help='initialize the model from given file')
 parser.add_argument('--epoch', '-e', default=100, type=int)
 parser.add_argument('--lr', '-l', default=1e-5, type=float)
-parser.add_argument('--image_size', default=320, type=int)
+parser.add_argument('--image_size', default=224, type=int)
 parser.add_argument('--output', default=7, type=int)
 args = parser.parse_args()
 

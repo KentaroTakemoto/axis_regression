@@ -62,7 +62,8 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
         img = Image.open(image_path1).convert('RGB')
         w,h = img.size
         if w!=size or h!= size:
-            img = cropping(img,size)
+            # img = cropping(img,size)
+            img = img.resize((size,size))
         x1 = xp.asarray(img, dtype=xp.float32).transpose(2, 0, 1)
         x1 -= 120
         # print(x1.shape)
@@ -70,7 +71,8 @@ def load_data(view_param, model_number, mode="data", test_angles=None, size=None
         img = Image.open(image_path2).convert('RGB')
         w,h = img.size
         if w!=size or h!= size:
-            img = cropping(img,size)
+            # img = cropping(img,size)
+            img = img.resize((size,size))
         x2 = xp.asarray(img, dtype=xp.float32).transpose(2, 0, 1)
         x2 -= 120
 
