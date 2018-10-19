@@ -34,8 +34,8 @@ labels = []
 for i in range(100):
     view_param = view_params[np.random.randint(len(view_params)-train_view_params) + train_view_params]
     model_number = np.random.randint(2)
-    x = load_data(view_param, model_number, mode="data", angles=test_angles, size=image_size, xp=xp)
-    y = load_data(view_param, model_number, mode="label",n_out=n_out, xp=xp)
+    x = load_data(view_param, model_number, mode="data", angles=test_angles, size=args.image_size, xp=xp)
+    y = load_data(view_param, model_number, mode="label",n_out=args.output, xp=xp)
     x = np.expand_dims(x, axis=0)
     pred = model(x).data[0]
     preds.append(pred)
