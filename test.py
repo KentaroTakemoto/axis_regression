@@ -25,9 +25,6 @@ parser.add_argument('--output', default=7, type=int)
 args = parser.parse_args()
 
 train_view_params = args.train_view_params
-test_angles = args.test_angles.split(',')
-if model_number==1:
-    test_angles = [str(int(test_angles[0])*-1), str(int(test_angles[1])*-1)]
 view_params_file = args.view_params_file
 
 with open(view_params_file,"r") as f:
@@ -45,8 +42,11 @@ xp = np if args.gpu < 0 else cuda.cupy
 preds = []
 labels = []
 for i in range(100):
+    test_angles = args.test_angles.split(',')
     view_param = view_params[np.random.randint(len(view_params)-train_view_params) + train_view_params]
     model_number = np.random.randint(2)
+    if model_number==1:
+        test_angles = [str(int(test_angles[0])*-1), str(int(test_angles[1])*-1)]
     x = load_data(view_param, model_number, mode="data", angles=test_angles, size=args.image_size, xp=xp)
     y = load_data(view_param, model_number, mode="label",n_out=args.output, xp=xp)
     x = np.expand_dims(x, axis=0)
