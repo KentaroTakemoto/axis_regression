@@ -51,14 +51,15 @@ for i in range(100):
     y = load_data(view_param, model_number, mode="label",n_out=args.output, xp=np)
     x = xp.expand_dims(x, axis=0)
     x = Variable(x)
-    pred = model(x, train=False).data[0]
+    pred = chainer.cuda.to_cpu(model(x, train=False).data[0])
     preds.append(pred)
-    labels.append(y)
+    labels.append(chainer.cuda.to_cpu(y))
 
 print(preds[0])
 print('-'*40)
 print(labels[0])
 preds = chainer.cuda.to_cpu(np.array(preds))
+
 labels = chainer.cuda.to_cpu(np.array(labels))
 
 print('l2 error for direction : {}'.format(np.mean(np.linalg.norm(preds[:,:3]-labels[:,:3],axis=1))))
