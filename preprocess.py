@@ -45,6 +45,8 @@ def load_data(view_param, model_number, mode="data", angles=None, size=None,n_ou
             y=xp.array([float(v) for v in f.read().split(' ') ])
             if n_out==7:
                 y = y[xp.array([0,1,2,3,4,6,7])]
+            elif n_out == 3:
+                y = y[xp.array([0,1,2])]
         ############################################################
         for i in range(3):
             y[i] = y[i] * 0.5 + 0.5

@@ -95,6 +95,6 @@ for epoch in range(n_epoch):
 
 if not os.path.exists("weight"):
     os.mkdir("weight")
-serializers.save_npz('weight/test1.weight', model)
-serializers.save_npz('weight/test1.state', optimizer)
+serializers.save_npz('weight/test2.weight', model)
+serializers.save_npz('weight/test2.state', optimizer)
 print('save weight')
