@@ -27,6 +27,7 @@ parser.add_argument('--epoch', '-e', default=100, type=int)
 parser.add_argument('--lr', '-l', default=1e-5, type=float)
 parser.add_argument('--image_size', default=224, type=int)
 parser.add_argument('--output', default=7, type=int)
+parser.add_argument('--save_name', '-s', default='test', type=str)
 args = parser.parse_args()
 
 n_epoch = args.epoch
@@ -37,6 +38,7 @@ initmodel = args.initmodel
 test_angles = args.test_angles.split(',')
 train_view_params = args.train_view_params
 view_params_file = args.view_params_file
+save_name = args.save_name
 
 with open(view_params_file,"r") as f:
     ls = f.readlines()
@@ -65,6 +67,7 @@ print("## INFORMATION ##")
 print("Num Epoch: {}, Data: {}, Batchsize: {}, Iteration {}".format(n_epoch, len(view_params) * 50, batchsize, n_iter))
 
 print("-"*40)
+loss_history = []
 for epoch in range(n_epoch):
     print('epoch', epoch+1)
     for i in range(n_iter):
@@ -91,10 +94,15 @@ for epoch in range(n_epoch):
 
         loss.backward()
         optimizer.update()
+    loss_history.append(loss.data)
     print("\n"+"-"*40)
 
 if not os.path.exists("weight"):
     os.mkdir("weight")
-serializers.save_npz('weight/test2.weight', model)
-serializers.save_npz('weight/test2.state', optimizer)
+serializers.save_npz('weight/{}.weight'.format(save_name), model)
+serializers.save_npz('weight/{}.state'.format(save_name), optimizer)
 print('save weight')
+
+import pickle
+with open('loss_history_{}.pickle'.format(save_name), 'wb') as f:
+    pickle.dump(loss_history, f)
