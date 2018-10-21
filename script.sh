@@ -5,3 +5,5 @@
 # python train.py --gpu 1 -b 20 -e 100 --output 4 -s test3
 
 python test.py --gpu 1 -w weight/test1.weight --output 7
+python test.py --gpu 1 -w weight/test2.weight --output 3
+python test.py --gpu 1 -w weight/test3.weight --output 4

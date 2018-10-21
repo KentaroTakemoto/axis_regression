@@ -56,24 +56,25 @@ for i in range(100):
     labels.append(chainer.cuda.to_cpu(y))
 
 print(preds[0])
-print('-'*40)
 print(labels[0])
 preds = chainer.cuda.to_cpu(np.array(preds)).astype(np.float32)
 
 labels = chainer.cuda.to_cpu(np.array(labels)).astype(np.float32)
 
-if args.output == 7:
-    print('l2 error for direction : {}'.format(np.mean(np.linalg.norm(preds[:,:3]-labels[:,:3],axis=1))))
-    print('l2 error for location : {}'.format(np.mean(np.linalg.norm(preds[:,3:]-labels[:,3:],axis=1))))
-print('whole l2 error : {}'.format(np.mean(np.linalg.norm(preds-labels,axis=1))))
+# if args.output == 7:
+#     print('l2 error for direction : {}'.format(np.mean(np.linalg.norm(preds[:,:3]-labels[:,:3],axis=1))))
+#     print('l2 error for location : {}'.format(np.mean(np.linalg.norm(preds[:,3:]-labels[:,3:],axis=1))))
+# print('whole l2 error : {}'.format(np.mean(np.linalg.norm(preds-labels,axis=1))))
 
 if args.output == 7:
     print('l2 error for direction : {}'.format(np.mean((preds[:,:3]-labels[:,:3])**2)))
     print('l2 error for location : {}'.format(np.mean((preds[:,3:]-labels[:,3:])**2)))
 print('whole l2 error : {}'.format(np.mean((preds-labels)**2,)))
 
-print(F.mean_squared_error(preds[:,:3],labels[:,:3]))
-if args.output == 7:
-    print('l2 error for direction : {}'.format(F.mean_squared_error(preds[:,:3],labels[:,:3])))
-    print('l2 error for location : {}'.format(F.mean_squared_error(preds[:,3:],labels[:,3:])))
-print('whole l2 error : {}'.format(F.mean_squared_error(preds,labels)))
+# print(F.mean_squared_error(preds[:,:3],labels[:,:3]))
+# if args.output == 7:
+#     print('l2 error for direction : {}'.format(F.mean_squared_error(preds[:,:3],labels[:,:3])))
+#     print('l2 error for location : {}'.format(F.mean_squared_error(preds[:,3:],labels[:,3:])))
+# print('whole l2 error : {}'.format(F.mean_squared_error(preds,labels)))
+
+print('-'*80)
