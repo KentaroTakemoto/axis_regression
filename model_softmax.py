@@ -9,7 +9,7 @@ from chainer import Variable
 
 class VGG_double_softmax(chainer.Chain):
     def __init__(self, n_out=7):
-        super(VGG_double, self).__init__(
+        super(VGG_double_softmax, self).__init__(
             model = L.VGG16Layers(),
             fc = L.Linear(8192,n_out))
 
