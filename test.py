@@ -58,9 +58,9 @@ for i in range(100):
 print(preds[0])
 print('-'*40)
 print(labels[0])
-preds = chainer.cuda.to_cpu(np.array(preds))
+preds = chainer.cuda.to_cpu(np.array(preds)).astype(np.float32)
 
-labels = chainer.cuda.to_cpu(np.array(labels))
+labels = chainer.cuda.to_cpu(np.array(labels)).astype(np.float32)
 
 if args.output == 7:
     print('l2 error for direction : {}'.format(np.mean(np.linalg.norm(preds[:,:3]-labels[:,:3],axis=1))))
