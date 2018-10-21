@@ -68,6 +68,8 @@ if args.output == 7:
 print('whole l2 error : {}'.format(np.mean(np.linalg.norm(preds-labels))))
 
 
+print(F.mean_squared_error(preds[:,:3],labels[:,:3]))
+print(F.mean_squared_error(preds[:,:3],labels[:,:3]).shape)
 if args.output == 7:
     print('l2 error for direction : {}'.format(np.mean(F.mean_squared_error(preds[:,:3],labels[:,:3]))))
     print('l2 error for location : {}'.format(np.mean(F.mean_squared_error(preds[:,3:],labels[:,3:]))))
