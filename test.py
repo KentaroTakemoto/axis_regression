@@ -24,6 +24,7 @@ parser.add_argument('--image_size', default=224, type=int)
 parser.add_argument('--output', default=7, type=int)
 args = parser.parse_args()
 
+print(args.weight)
 train_view_params = args.train_view_params
 view_params_file = args.view_params_file
 
