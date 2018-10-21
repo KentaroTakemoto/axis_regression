@@ -26,8 +26,8 @@ class VGG_double_softmax(chainer.Chain):
             with chainer.using_config('enable_backprop', train):
                 h = Variable(h.data)
         h = F.tanh(self.fc(h))
-        sum = self.xp.sum(h**2,axis=1)
-        sum_t = self.xp.ones_like(sum)
+        sum = F.sum(h**2,axis=1)
+        sum_t = Variable(self.xp.ones_like(self.xp.asarray(sum.data,dtype=np.float32)))
         if train:
             return F.mean_squared_error(h, t) + F.mean_squared_error(sum, sum_t)
         else:
