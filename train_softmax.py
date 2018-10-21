@@ -11,7 +11,7 @@ import os
 import argparse
 
 from model_softmax import VGG_double_softmax
-from preprocess import load_data, select_angles
+from preprocess_softmax import load_data_softmax, select_angles
 
 parser = argparse.ArgumentParser(description='Chainer Axis Regression Network')
 parser.add_argument('--gpu', '-g', default=-1, type=int,
@@ -80,8 +80,8 @@ for epoch in range(n_epoch):
             view_param = view_params[np.random.randint(train_view_params)]
             model_number = np.random.randint(2)
             ang1, ang2 = select_angles(model_number, test_angles)
-            x[j] = load_data(view_param, model_number, mode="data", angles=[ang1,ang2], size=image_size, xp=xp)
-            y[j] = load_data(view_param, model_number, mode="label",n_out=n_out, xp=xp)
+            x[j] = load_data_softmax(view_param, model_number, mode="data", angles=[ang1,ang2], size=image_size, xp=xp)
+            y[j] = load_data_softmax(view_param, model_number, mode="label",n_out=n_out, xp=xp)
         x = Variable(x)
         y = Variable(y)
         if epoch < n_epoch/2:
