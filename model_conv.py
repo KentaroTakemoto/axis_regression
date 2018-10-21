@@ -11,7 +11,7 @@ from chainer.initializers import HeNormal
 class VGG_double(chainer.Chain):
     def __init__(self, n_out=7):
         super(VGG_double, self).__init__(
-            conv = L.Convolution2D(6,3,ksize=3,stride=1,pad=1,initialW=HeNormal())
+            conv = L.Convolution2D(6,3,ksize=3,stride=1,pad=1,initialW=HeNormal()),
             model = L.VGG16Layers(),
             fc = L.Linear(4096,n_out))
 
